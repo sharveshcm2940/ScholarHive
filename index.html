@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OS Algorithm Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<button class="hamburger" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+
+<nav id="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-eyebrow">Interactive Lab</div>
+    <div class="logo-main">OS <em>Algorithm</em><br>Laboratory</div>
+    <div class="logo-sub">Simulator v2.0</div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Navigate</div>
+    <div class="nav-item active" onclick="showPage('home')">
+      <div class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+      Dashboard
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">CPU</div>
+    <div class="nav-item" onclick="showPage('cpu')">
+      <div class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="1"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/></svg></div>
+      CPU Scheduling
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">Memory</div>
+    <div class="nav-item" onclick="showPage('banker')">
+      <div class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      Banker's Algorithm
+    </div>
+    <div class="nav-item" onclick="showPage('page')">
+      <div class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg></div>
+      Page Replacement
+    </div>
+    <div class="nav-item" onclick="showPage('memory')">
+      <div class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="1"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="10" y1="10" x2="10" y2="14"/><line x1="14" y1="10" x2="14" y2="14"/><line x1="18" y1="10" x2="18" y2="14"/></svg></div>
+      Memory Allocation
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-label">I/O</div>
+    <div class="nav-item" onclick="showPage('disk')">
+      <div class="nav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg></div>
+      Disk Scheduling
+    </div>
+  </div>
+
+  <div class="sidebar-bottom">
+    <div class="algo-badge">
+      FCFS <span>—</span> First Come First Serve<br>
+      SJF <span>—</span> Shortest Job First<br>
+      SRTF <span>—</span> Shortest Remaining<br>
+      RR <span>—</span> Round Robin<br>
+      PS <span>—</span> Priority Scheduling
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="home-hero">
+    <div class="hero-eyebrow"><span></span>Operating System Concepts<span></span></div>
+    <h1 class="hero-title">Algorithm<br><em>Simulator</em></h1>
+    <p class="hero-desc">An interactive environment to simulate, visualize, and understand core Operating System algorithms with real-time diagrams and step-by-step analysis.</p>
+    <div class="tag-row">
+      <span class="tag">CPU Scheduling</span>
+      <span class="tag">Banker's Algorithm</span>
+      <span class="tag">Page Replacement</span>
+      <span class="tag">Memory Allocation</span>
+      <span class="tag">Disk Scheduling</span>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="algo-cards">
+    <div class="algo-card" style="--card-color:#e8a825" onclick="showPage('cpu')">
+      <div class="algo-card-num">01 / CPU</div>
+      <h3>CPU Scheduling</h3>
+      <p>Simulate FCFS, SJF, SRTF, Round Robin, and Priority Scheduling with Gantt chart.</p>
+      <div class="algo-card-arrow">→</div>
+    </div>
+    <div class="algo-card" style="--card-color:#f06060" onclick="showPage('banker')">
+      <div class="algo-card-num">02 / MEMORY</div>
+      <h3>Banker's Algorithm</h3>
+      <p>Deadlock avoidance using the safety algorithm. Check safe states and resource allocation.</p>
+      <div class="algo-card-arrow">→</div>
+    </div>
+    <div class="algo-card" style="--card-color:#4ed88a" onclick="showPage('page')">
+      <div class="algo-card-num">03 / MEMORY</div>
+      <h3>Page Replacement</h3>
+      <p>FIFO, LRU, and Optimal page replacement. Track hits, faults and frame states.</p>
+      <div class="algo-card-arrow">→</div>
+    </div>
+    <div class="algo-card" style="--card-color:#6090ff" onclick="showPage('memory')">
+      <div class="algo-card-num">04 / MEMORY</div>
+      <h3>Memory Allocation</h3>
+      <p>First Fit, Best Fit, Worst Fit, and Next Fit contiguous memory allocation.</p>
+      <div class="algo-card-arrow">→</div>
+    </div>
+    <div class="algo-card" style="--card-color:#3de8c8" onclick="showPage('disk')">
+      <div class="algo-card-num">05 / DISK</div>
+      <h3>Disk Scheduling</h3>
+      <p>FCFS, SSTF, SCAN, C-SCAN, LOOK, C-LOOK with seek path diagram.</p>
+      <div class="algo-card-arrow">→</div>
+    </div>
+  </div>
+</div>
+
+<!-- CPU SCHEDULING -->
+<div class="page" id="page-cpu">
+  <div class="page-header">
+    <div class="ph-tag">01 — CPU Management</div>
+    <h2>CPU Scheduling</h2>
+    <p>Simulate various CPU scheduling algorithms and visualize process execution using Gantt charts with complete metrics.</p>
+  </div>
+  <div class="card" style="position:relative;">
+    <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+    <div class="card-title">Algorithm Configuration</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Algorithm</label>
+        <select id="cpu-algo" onchange="cpuAlgoChange()">
+          <option value="fcfs">FCFS — First Come First Serve</option>
+          <option value="sjf">SJF — Non-Preemptive</option>
+          <option value="srtf">SRTF — Preemptive SJF</option>
+          <option value="rr">Round Robin</option>
+          <option value="priority_np">Priority (Non-Preemptive)</option>
+          <option value="priority_p">Priority (Preemptive)</option>
+        </select>
+      </div>
+      <div class="form-group" id="quantum-group" style="display:none">
+        <label>Time Quantum</label>
+        <input type="number" id="cpu-quantum" value="2" min="1">
+      </div>
+    </div>
+    <div>
+      <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--wire);">
+        <div class="proc-label" style="color:var(--txt3);">ID</div>
+        <div style="flex:1;font-size:8px;color:var(--txt3);font-family:'IBM Plex Mono',monospace;letter-spacing:2px;text-transform:uppercase;">Arrival</div>
+        <div style="flex:1;font-size:8px;color:var(--txt3);font-family:'IBM Plex Mono',monospace;letter-spacing:2px;text-transform:uppercase;">Burst</div>
+        <div style="flex:1;font-size:8px;color:var(--txt3);font-family:'IBM Plex Mono',monospace;letter-spacing:2px;text-transform:uppercase;" id="prio-col-head">Priority</div>
+        <div style="width:26px;"></div>
+      </div>
+      <div id="cpu-processes"></div>
+    </div>
+    <div class="btn-row" style="margin-top:14px;">
+      <button class="btn btn-secondary btn-sm" onclick="addCPUProcess()">+ Add Process</button>
+      <button class="btn btn-primary" onclick="runCPU()">▶ Run Simulation</button>
+      <button class="btn btn-secondary btn-sm" onclick="resetCPU()">Reset</button>
+    </div>
+  </div>
+  <div class="card" id="cpu-results" style="display:none;position:relative;">
+    <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+    <div class="card-title">Simulation Results</div>
+    <div class="results-grid" id="cpu-avg-results"></div>
+    <div class="gantt-container">
+      <div class="gantt-label">Gantt Chart</div>
+      <div class="gantt-chart" id="gantt-chart"></div>
+      <div class="gantt-timeline" id="gantt-timeline"></div>
+    </div>
+    <div style="margin-top:24px;">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Process</th><th>Arrival</th><th>Burst</th><th>Completion</th><th>Turnaround</th><th>Waiting</th><th>Response</th></tr></thead>
+          <tbody id="cpu-result-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BANKER -->
+<div class="page" id="page-banker">
+  <div class="page-header">
+    <div class="ph-tag">02 — Memory Management</div>
+    <h2>Banker's Algorithm</h2>
+    <p>Deadlock avoidance algorithm. Enter Allocation, Maximum, and Available resources to determine safe state and find the safe sequence.</p>
+  </div>
+  <div class="card" style="position:relative;">
+    <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+    <div class="card-title">Configuration</div>
+    <div class="form-grid" style="max-width:380px">
+      <div class="form-group">
+        <label>Number of Processes</label>
+        <input type="number" id="banker-procs" value="5" min="1" max="10">
+      </div>
+      <div class="form-group">
+        <label>Number of Resources</label>
+        <input type="number" id="banker-res" value="3" min="1" max="6">
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary btn-sm" onclick="initBanker()">Initialize Tables</button>
+      <button class="btn btn-secondary btn-sm" onclick="loadBankerExample()">Load Example</button>
+    </div>
+  </div>
+  <div id="banker-tables" style="display:none">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;">
+      <div class="card" style="position:relative;">
+        <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+        <div class="card-title">Allocation Matrix</div>
+        <div class="banker-cols" id="alloc-col-labels"></div>
+        <div id="alloc-matrix" class="matrix-grid"></div>
+      </div>
+      <div class="card" style="position:relative;">
+        <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+        <div class="card-title">Maximum Matrix</div>
+        <div class="banker-cols" id="max-col-labels"></div>
+        <div id="max-matrix" class="matrix-grid"></div>
+      </div>
+    </div>
+    <div class="card" style="position:relative;">
+      <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+      <div class="card-title">Available Resources</div>
+      <div style="display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;" id="available-row">
+        <div id="available-inputs" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+      </div>
+    </div>
+    <div class="btn-row"><button class="btn btn-primary" onclick="runBanker()">▶ Check Safe State</button></div>
+    <div class="card" id="banker-result" style="display:none;position:relative;">
+      <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+      <div class="card-title">Result</div>
+      <div id="banker-result-content"></div>
+      <div style="margin-top:18px;">
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Process</th><th>Allocation</th><th>Maximum</th><th>Need</th><th>Available After</th></tr></thead>
+            <tbody id="banker-detail-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE REPLACEMENT -->
+<div class="page" id="page-page">
+  <div class="page-header">
+    <div class="ph-tag">03 — Memory Management</div>
+    <h2>Page Replacement Algorithms</h2>
+    <p>Simulate FIFO, LRU, and Optimal page replacement. Visualize frame states, page faults and hits for any reference string.</p>
+  </div>
+  <div class="card" style="position:relative;">
+    <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+    <div class="card-title">Configuration</div>
+    <div class="form-grid">
+      <div class="form-group" style="grid-column:1/-1;max-width:520px">
+        <label>Reference String (space-separated)</label>
+        <input type="text" id="pr-refstr" value="7 0 1 2 0 3 0 4 2 3 0 3 2 1 2 0 1 7 0 1">
+      </div>
+      <div class="form-group">
+        <label>Number of Frames</label>
+        <input type="number" id="pr-frames" value="3" min="1" max="8">
+      </div>
+      <div class="form-group">
+        <label>Algorithm</label>
+        <select id="pr-algo">
+          <option value="fifo">FIFO — First In First Out</option>
+          <option value="lru">LRU — Least Recently Used</option>
+          <option value="optimal">Optimal Page Replacement</option>
+        </select>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="runPageReplacement()">▶ Simulate</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('pr-results').style.display='none'">Reset</button>
+    </div>
+  </div>
+  <div class="card" id="pr-results" style="display:none;position:relative;">
+    <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+    <div class="card-title">Simulation Results</div>
+    <div class="results-grid" id="pr-summary"></div>
+    <div style="margin-top:6px;">
+      <div style="display:flex;gap:4px;flex-wrap:wrap;margin-bottom:8px;padding-left:38px;" id="pr-header-frames"></div>
+      <div id="pr-steps"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MEMORY ALLOCATION -->
+<div class="page" id="page-memory">
+  <div class="page-header">
+    <div class="ph-tag">04 — Memory Management</div>
+    <h2>Memory Allocation</h2>
+    <p>Contiguous memory allocation: First Fit, Best Fit, Worst Fit, and Next Fit strategies visualized.</p>
+  </div>
+  <div class="card" style="position:relative;">
+    <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+    <div class="card-title">Memory Blocks</div>
+    <div style="display:flex;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--wire);margin-bottom:2px;">
+      <div class="proc-label" style="color:var(--txt3);width:52px;">Block</div>
+      <div style="flex:1;font-size:8px;color:var(--txt3);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:2px;">Size (KB)</div>
+      <div style="width:26px;"></div>
+    </div>
+    <div id="mem-block-rows"></div>
+    <div class="btn-row" style="margin-top:10px;"><button class="btn btn-secondary btn-sm" onclick="addMemBlock()">+ Add Block</button></div>
+    <div class="divider"></div>
+    <div class="card-title" style="border:none;padding:0;margin-bottom:12px;">Processes to Allocate</div>
+    <div style="display:flex;gap:8px;padding-bottom:8px;border-bottom:1px solid var(--wire);margin-bottom:2px;">
+      <div class="proc-label" style="color:var(--txt3);">Proc</div>
+      <div style="flex:1;font-size:8px;color:var(--txt3);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:2px;">Size (KB)</div>
+      <div style="width:26px;"></div>
+    </div>
+    <div id="mem-proc-rows"></div>
+    <div class="btn-row" style="margin-top:10px;"><button class="btn btn-secondary btn-sm" onclick="addMemProc()">+ Add Process</button></div>
+    <div class="divider"></div>
+    <div class="form-grid" style="max-width:260px;">
+      <div class="form-group">
+        <label>Algorithm</label>
+        <select id="mem-algo">
+          <option value="first">First Fit</option>
+          <option value="best">Best Fit</option>
+          <option value="worst">Worst Fit</option>
+          <option value="next">Next Fit</option>
+        </select>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="runMemory()">▶ Allocate</button>
+      <button class="btn btn-secondary btn-sm" onclick="resetMemory()">Reset</button>
+    </div>
+  </div>
+  <div class="card" id="mem-results" style="display:none;position:relative;">
+    <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+    <div class="card-title">Allocation Results</div>
+    <div class="mem-visual" id="mem-visual"></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Process</th><th>Size (KB)</th><th>Block</th><th>Block Size</th><th>Internal Frag.</th><th>Status</th></tr></thead>
+        <tbody id="mem-result-body"></tbody>
+      </table>
+    </div>
+    <div style="margin-top:16px;" id="mem-frag-summary"></div>
+  </div>
+</div>
+
+<!-- DISK SCHEDULING -->
+<div class="page" id="page-disk">
+  <div class="page-header">
+    <div class="ph-tag">05 — I/O Management</div>
+    <h2>Disk Scheduling</h2>
+    <p>Visualize disk arm movement for FCFS, SSTF, SCAN, C-SCAN, LOOK, and C-LOOK with seek path diagram.</p>
+  </div>
+  <div class="card" style="position:relative;">
+    <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+    <div class="card-title">Configuration</div>
+    <div class="form-grid">
+      <div class="form-group" style="grid-column:1/-1;max-width:480px">
+        <label>Disk Queue (space-separated track numbers)</label>
+        <input type="text" id="disk-queue" value="98 183 37 122 14 124 65 67">
+      </div>
+      <div class="form-group">
+        <label>Initial Head Position</label>
+        <input type="number" id="disk-head" value="53" min="0">
+      </div>
+      <div class="form-group">
+        <label>Disk Size (max cylinders)</label>
+        <input type="number" id="disk-size" value="200" min="1">
+      </div>
+      <div class="form-group">
+        <label>Algorithm</label>
+        <select id="disk-algo" onchange="diskAlgoChange()">
+          <option value="fcfs">FCFS</option>
+          <option value="sstf">SSTF</option>
+          <option value="scan">SCAN (Elevator)</option>
+          <option value="cscan">C-SCAN</option>
+          <option value="look">LOOK</option>
+          <option value="clook">C-LOOK</option>
+        </select>
+      </div>
+      <div class="form-group" id="disk-dir-group" style="display:none">
+        <label>Initial Direction</label>
+        <select id="disk-dir">
+          <option value="up">Towards Higher Cylinders</option>
+          <option value="down">Towards Lower Cylinders</option>
+        </select>
+      </div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="runDisk()">▶ Simulate</button>
+      <button class="btn btn-secondary btn-sm" onclick="document.getElementById('disk-results').style.display='none'">Reset</button>
+    </div>
+  </div>
+  <div class="card" id="disk-results" style="display:none;position:relative;">
+    <div class="corner-decor tl"></div><div class="corner-decor tr"></div><div class="corner-decor bl"></div><div class="corner-decor br"></div>
+    <div class="card-title">Results</div>
+    <div class="seek-info" id="disk-stats"></div>
+    <div class="disk-diagram-wrap" style="margin-top:18px;">
+      <div class="gantt-label">Disk Arm Movement Graph <span style="font-size:8px;color:var(--txt3);font-weight:400;letter-spacing:1px;">(X = Cylinder, Y = Time Steps ↓)</span></div>
+      <canvas id="disk-canvas"></canvas>
+    </div>
+    <div style="margin-top:18px;">
+      <div class="gantt-label">Seek Sequence <span style="font-size:8px;color:var(--txt3);font-weight:400;">(track → seek distance)</span></div>
+      <div id="disk-sequence" style="display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start;padding:12px 0;"></div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
